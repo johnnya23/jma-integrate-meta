@@ -15,6 +15,7 @@ add_action('wp_enqueue_scripts', 'jma_meta_files');
 
 function meta_slider_array_filter($slider_selections)
 {
+    $sliders = '';
     $posts = get_posts(array(
         'post_type' => 'ml-slider',
         'post_status' => 'publish',
