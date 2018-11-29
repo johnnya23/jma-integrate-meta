@@ -6,7 +6,7 @@
     text-align: left !important;
 }
 
-.metaslider .nivo-controlNav .nivo-control, .nivo-controlNav .nivo-control {
+body .metaslider .theme-default .nivo-controlNav a {
     background: #aaaaaa;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -18,7 +18,7 @@
     display: inline-block;
 }
 
-.metaslider .nivo-controlNav .nivo-control.active, .nivo-controlNav .nivo-control.active {
+body .metaslider .theme-default .nivo-controlNav a.active {
     background: #666666;
 }
 
