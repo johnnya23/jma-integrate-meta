@@ -61,17 +61,29 @@ add_action('after_setup_theme', 'jma_integrate_meta');
 
 function jma_int_meta_nivo_slider_image_attributes($x, $slide)
 {
-    $jma_caption_position = $jma_class = '';
     $slide_id = $slide['id'];
-    if (get_post_meta($slide_id, '_meta_slider_jma_caption_position', true)) {
-        $jma_caption_position = get_post_meta($slide_id, '_meta_slider_jma_caption_position', true);
-    }
+    $url = $slide['url'];
+    $button_text = get_post_meta($slide_id, '_meta_slider_jma_button_text', true);
+    $title = get_post_meta($slide_id, '_meta_slider_jma_title', true);
+    if ($x['data-caption'] || $button_text || $title) {
+        $button = $jma_caption_position = $jma_class = '';
+        if (get_post_meta($slide_id, '_meta_slider_jma_caption_position', true)) {
+            $jma_class .= get_post_meta($slide_id, '_meta_slider_jma_caption_position', true);
+        }
+        if (get_post_meta($slide_id, '_meta_slider_jma_class', true)) {
+            $jma_class .= ' ' . esc_attr(get_post_meta($slide_id, '_meta_slider_jma_class', true));
+        }
 
-    if (get_post_meta($slide_id, '_meta_slider_jma_class', true)) {
-        $jma_class = esc_attr(get_post_meta($slide_id, '_meta_slider_jma_class', true));
+        $title = $title? '<h2>' . $title . '</h2><div></div>': '';
+
+        if ($button_text) {
+            $target = get_post_meta($slide_id, 'ml-slider_new_window', true) ? '_blank' : '_self';
+            $button = '<a href="' . $url . '" target="' . $target . '">' . $button_text . '</a>';
+        }
+
+        $current = '<div class="ml-caption-content">' . $x['data-caption'] . '</div>';
+        $x['data-caption'] = '<div class="jma-wrapper ' . $jma_class .'">' .$title . $current . $button . '</div>';
     }
-    $current = $x['data-caption'];
-    $x['data-caption'] = '<div class="jma-wrapper ' . $jma_class .' ' . $jma_caption_position .'">' . $current . '</div>';
     return $x;
 }
 add_filter('metaslider_nivo_slider_image_attributes', 'jma_int_meta_nivo_slider_image_attributes', 10, 2);
@@ -79,9 +91,27 @@ add_filter('metaslider_nivo_slider_image_attributes', 'jma_int_meta_nivo_slider_
 function jma_int_meta_image_slide_tabs($tabs, $slide, $slider, $settings)
 {
     $slide_id = $slide->ID;
+    $jma_title = esc_attr(get_post_meta($slide_id, '_meta_slider_jma_title', true));
+    $caption = $slide->post_excerpt;
+    $jma_button = esc_attr(get_post_meta($slide_id, '_meta_slider_jma_button_text', true));
+    $url = esc_attr(get_post_meta($slide_id, 'ml-slider_url', true));
+    $target = get_post_meta($slide_id, 'ml-slider_new_window', true) ? 'checked=checked' : '';
+
+    /* general tab */
+    ob_start();
+    include 'tabs/general.php';
+    $general_tab = ob_get_contents();
+    ob_end_clean();
+
+    $tabs['general'] = array(
+            'title' => __('General', 'ml-slider'),
+            'content' => $general_tab
+        );
+
+    /* format tab */
     $jma_caption_position = get_post_meta($slide_id, '_meta_slider_jma_caption_position', true);
     if (!$jma_caption_position) {
-        $jma_caption_position = 'center-center';
+        $jma_caption_position = 'right-bottom';
     }
 
     $jma_class = esc_attr(get_post_meta($slide_id, '_meta_slider_jma_class', true));
@@ -103,5 +133,7 @@ function jma_int_meta_save_settings($slide_id, $slider_id, $fields)
 {
     update_post_meta($slide_id, '_meta_slider_jma_caption_position', $fields['jma_caption_position']);
     update_post_meta($slide_id, '_meta_slider_jma_class', $fields['jma_class']);
+    update_post_meta($slide_id, '_meta_slider_jma_title', $fields['jma_title']);
+    update_post_meta($slide_id, '_meta_slider_jma_button_text', $fields['jma_button']);
 }
-add_action('metaslider_save_image_slide', 'jma_int_meta_save_settings', 10, 3);
+add_action('metaslider_save_image_slide', 'jma_int_meta_save_settings', 20, 3);
