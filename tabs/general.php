@@ -12,8 +12,13 @@
 <div class="row has-right-checkbox">
 	<label><?php _e("Button text", "ml-slider"); ?></label>
 	<input class="url" type="text" name="attachment[<?php echo $slide_id; ?>][jma_button]" placeholder="<?php _e("Button Text", "ml-slider"); ?>" value="<?php echo $jma_button; ?>" /><br/>
+
+	<label><?php _e("Button class", "ml-slider"); ?></label>
+	<input class="url" type="text" name="attachment[<?php echo $slide_id; ?>][jma_button_class]" value="<?php echo $jma_button_class; ?>" /><br/>
+
 	<label><?php _e("Button URL", "ml-slider"); ?></label>
 	<input class="url" type="text" name="attachment[<?php echo $slide_id; ?>][url]" placeholder="<?php _e("Button URL", "ml-slider"); ?>" value="<?php echo $url; ?>" />
+    
 	<div class="input-label right new_window">
 		<label><?php _e("Open in a new window", "ml-slider"); ?> <input autocomplete="off" tabindex="0" type="checkbox" name="attachment[<?php echo $slide_id; ?>][new_window]" <?php echo $target; ?> /></label>
 	</div>

@@ -74,12 +74,61 @@ body .theme-default .nivo-directionNav a.nivo-nextNav {
 }
 
 .metaslider .nivo-caption {
-    bottom: 20px;
-    left: inherit;
-    right: 50px;
-    width: 33%;
-    background: rgba(0, 0, 0, 0.8);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1240px;
+    width: 100%;
+    top: 0;
+    background: none;
     opacity: 1;
+}
+
+.metaslider .nivo-caption .jma-wrapper {
+    position: absolute;
+    width: 800px;
+}
+
+.metaslider .nivo-caption .jma-wrapper .ml-caption-content, .metaslider .nivo-caption .jma-wrapper>h2 {
+    margin-bottom: 20px;
+}
+
+.metaslider .nivo-caption .jma-wrapper .ml-caption-content {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    color: #666666;
+}
+
+.metaslider .nivo-caption .top {
+    top: 20px;
+}
+
+.metaslider .nivo-caption .right {
+    right: 20px;
+    text-align: right;
+}
+
+.metaslider .nivo-caption .left {
+    left: 20px;
+}
+
+.metaslider .nivo-caption .bottom {
+    bottom: 20px;
+}
+
+.metaslider .nivo-caption .middle {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.metaslider .nivo-caption .center {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.metaslider .nivo-caption .center.middle {
+    transform: translate(-50%, -50%);
 }
 
 .metaslider .nivo-caption h2, .metaslider .nivo-caption h3 {
