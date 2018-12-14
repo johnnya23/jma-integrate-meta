@@ -63,7 +63,7 @@ function jma_int_meta_nivo_slider_image_attributes($x, $slide)
 {
     $slide_id = $slide['id'];
     $url = $slide['url'];
-    $jma_title_class = $jma_caption_class = $button = $jma_caption_position = $jma_class_final = '';
+    $current = $jma_title_class = $jma_caption_class = $button = $jma_caption_position = $jma_class_final = '';
 
     extract(get_post_meta($slide_id, '_meta_slider_jma_field', true));
 
@@ -75,7 +75,7 @@ function jma_int_meta_nivo_slider_image_attributes($x, $slide)
             $jma_class_final .= ' ' . $jma_class;
         }
         $jma_title_class_html = $jma_title_class? ' class="' . $jma_title_class . '"': '';
-        $jma_title = $jma_title? '<h2' . $jma_title_class_html . '>' . $jma_title . '</h2><div></div>': '';
+        $jma_title = $jma_title? '<h2' . $jma_title_class_html . '>' . $jma_title . '</h2>': '';
 
         $jma_button_class_html = $jma_button_class? ' class="' . $jma_button_class . '"': '';
         if ($jma_button) {
@@ -83,7 +83,9 @@ function jma_int_meta_nivo_slider_image_attributes($x, $slide)
             $button = '<a' . $jma_button_class_html . ' href="' . $url . '" target="' . $target . '">' . $jma_button . '</a>';
         }
 
-        $current = '<div class="ml-caption-content ' . $jma_caption_class . '">' . $x['data-caption'] . '</div>';
+        if ($x['data-caption']) {
+            $current = '<div class="ml-caption-content ' . $jma_caption_class . '">' . $x['data-caption'] . '</div>';
+        }
         $x['data-caption'] = '<div class="jma-wrapper ' . $jma_class_final .'">' .$jma_title . $current . $button . '</div>';
     }
     return $x;
