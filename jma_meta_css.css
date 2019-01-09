@@ -87,6 +87,7 @@ body .theme-default .nivo-directionNav a.nivo-nextNav {
 .metaslider .nivo-caption .jma-wrapper {
     position: absolute;
     width: 800px;
+    max-width: 100%;
 }
 
 .metaslider .nivo-caption .jma-wrapper .ml-caption-content, .metaslider .nivo-caption .jma-wrapper>h2 {
@@ -147,6 +148,7 @@ body .theme-default .nivo-directionNav a.nivo-nextNav {
         left: 0;
         bottom: 0;
         right: 0;
+        transform: none;
         font-size: 13px;
     }
     .metaslider .nivo-controlNav {

@@ -63,7 +63,11 @@ function jma_int_meta_nivo_slider_image_attributes($x, $slide)
 {
     $slide_id = $slide['id'];
     $url = $slide['url'];
+<<<<<<< HEAD
     $jma_title_class = $jma_caption_class = $button = $jma_caption_position = $jma_class_final = '';
+=======
+    $current = $jma_title_class = $jma_caption_class = $button = $jma_caption_position = $jma_class_final = '';
+>>>>>>> d691968a20a6b975f40fc8044789835151a4451f
 
     extract(get_post_meta($slide_id, '_meta_slider_jma_field', true));
 
@@ -75,7 +79,11 @@ function jma_int_meta_nivo_slider_image_attributes($x, $slide)
             $jma_class_final .= ' ' . $jma_class;
         }
         $jma_title_class_html = $jma_title_class? ' class="' . $jma_title_class . '"': '';
+<<<<<<< HEAD
         $jma_title = $jma_title? '<h2' . $jma_title_class_html . '>' . $jma_title . '</h2><div></div>': '';
+=======
+        $jma_title = $jma_title? '<h2' . $jma_title_class_html . '>' . $jma_title . '</h2>': '';
+>>>>>>> d691968a20a6b975f40fc8044789835151a4451f
 
         $jma_button_class_html = $jma_button_class? ' class="' . $jma_button_class . '"': '';
         if ($jma_button) {
@@ -83,7 +91,13 @@ function jma_int_meta_nivo_slider_image_attributes($x, $slide)
             $button = '<a' . $jma_button_class_html . ' href="' . $url . '" target="' . $target . '">' . $jma_button . '</a>';
         }
 
+<<<<<<< HEAD
         $current = '<div class="ml-caption-content ' . $jma_caption_class . '">' . $x['data-caption'] . '</div>';
+=======
+        if ($x['data-caption']) {
+            $current = '<div class="ml-caption-content ' . $jma_caption_class . '">' . $x['data-caption'] . '</div>';
+        }
+>>>>>>> d691968a20a6b975f40fc8044789835151a4451f
         $x['data-caption'] = '<div class="jma-wrapper ' . $jma_class_final .'">' .$jma_title . $current . $button . '</div>';
     }
     return $x;
@@ -116,7 +130,11 @@ function jma_int_meta_image_slide_tabs($tabs, $slide, $slider, $settings)
             'content' => $general_tab
         );
 
+<<<<<<< HEAD
     /* position tab */
+=======
+    /* format tab */
+>>>>>>> d691968a20a6b975f40fc8044789835151a4451f
 
     if (!$jma_caption_position) {
         $jma_caption_position = 'right-bottom';
@@ -128,9 +146,15 @@ function jma_int_meta_image_slide_tabs($tabs, $slide, $slider, $settings)
     $position_tab = ob_get_contents();
     ob_end_clean();
 
+<<<<<<< HEAD
     $tabs['position'] = array(
             'title' => __('Position', 'ml-slider'),
             'content' => $position_tab
+=======
+    $tabs['format'] = array(
+            'title' => __('Align', 'ml-slider'),
+            'content' => $format_tab
+>>>>>>> d691968a20a6b975f40fc8044789835151a4451f
         );
     return $tabs;
 }
