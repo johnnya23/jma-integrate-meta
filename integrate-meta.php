@@ -121,7 +121,7 @@ function jma_int_meta_image_slide_tabs($tabs, $slide, $slider, $settings)
     /* position tab */
 
     if (!$jma_caption_position) {
-        $jma_caption_position = 'right-bottom';
+        $jma_caption_position = 'center-middle';
     }
 
     // Adds schedule tab
