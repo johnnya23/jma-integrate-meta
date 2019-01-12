@@ -2,7 +2,8 @@
     die('No direct access.');
 } ?>
 <div>
-    <div style="float:left;width:55%">
+    <div><label><?php _e("Title and Title class", "ml-slider"); ?></label></div>
+    <div style="float:left;width:55%;clear:both">
 	<input class="url" type="text" name="attachment[<?php echo $slide_id; ?>][jma_title]" placeholder="<?php _e("ADD A TITLE", "ml-slider"); ?>" value="<?php echo $jma_title; ?>" />
     </div>
     <div style="float:left;width:18%;margin-left:2%;margin-bottom:5px">
