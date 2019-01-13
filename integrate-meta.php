@@ -9,9 +9,22 @@ License: GPL2
 */
 function jma_meta_files()
 {
-    wp_enqueue_style('jma_meta_css', plugins_url('/jma_meta_css.css', __FILE__));
+    wp_enqueue_style('jma_meta_css', plugins_url('/jma_meta_css.min.css', __FILE__));
 }
 add_action('wp_enqueue_scripts', 'jma_meta_files');
+
+function jma_admin_meta_files()
+{
+    $data = 'body .metaslider-ui .metaslider-slides-container .slide {
+        max-height: none;
+    }
+    .metaslider .tabs-content .tab-0 .row {
+        width:40%;
+        clear: none;
+    }';
+    wp_add_inline_style('metaslider-global', $data);
+}
+add_action('admin_enqueue_scripts', 'jma_admin_meta_files', 15);
 
 function meta_slider_array_filter($slider_selections)
 {
@@ -35,11 +48,6 @@ function meta_slider_array_filter($slider_selections)
 
     return $slider_selections;
 }
-function jma_base_meta_slider_array_filter($html)
-{
-    return str_replace(array('class="nivo-prevNav">', 'class="nivo-nextNav">'), array('class="nivo-prevNav"><i class="sf-sub-indicator fas fa-angle-left"></i>', 'class="nivo-nextNav"><i class="sf-sub-indicator fas fa-angle-right"></i>'), $html);
-}
-//add_filter('metaslider_image_nivo_slider_markup', 'jma_base_meta_slider_array_filter', 1);
 
 function jma_meta_slider_filter($return, $type_id)
 {
@@ -62,8 +70,8 @@ add_action('after_setup_theme', 'jma_integrate_meta');
 function jma_int_meta_nivo_slider_image_attributes($x, $slide)
 {
     $slide_id = $slide['id'];
-    $url = $slide['url'];
-    $current = $jma_title_class = $jma_caption_class = $button = $jma_caption_position = $jma_class_final = '';
+    $jma_url = $slide['jma_url'];
+    $jma_url = $current = $jma_title_class = $jma_caption_class = $button = $jma_caption_position = $jma_class_final = '';
 
     extract(get_post_meta($slide_id, '_meta_slider_jma_field', true));
 
@@ -80,7 +88,7 @@ function jma_int_meta_nivo_slider_image_attributes($x, $slide)
         $jma_button_class_html = $jma_button_class? ' class="' . $jma_button_class . '"': '';
         if ($jma_button) {
             $target = get_post_meta($slide_id, 'ml-slider_new_window', true) ? '_blank' : '_self';
-            $button = '<a' . $jma_button_class_html . ' href="' . $url . '" target="' . $target . '">' . $jma_button . '</a>';
+            $button = '<a' . $jma_button_class_html . ' href="' . $jma_url . '" target="' . $target . '">' . $jma_button . '</a>';
         }
         //there may not be a main caption para (so check here)
         if ($x['data-caption']) {
@@ -95,7 +103,7 @@ add_filter('metaslider_nivo_slider_image_attributes', 'jma_int_meta_nivo_slider_
 function jma_int_meta_image_slide_tabs($tabs, $slide, $slider, $settings)
 {
     $slide_id = $slide->ID;
-    $jma_class = $jma_title_class = $jma_caption_class = $jma_title = $jma_button = $jma_button_class = '';
+    $jma_url = $jma_class = $jma_title_class = $jma_caption_class = $jma_title = $jma_button = $jma_button_class = '';
     extract(get_post_meta($slide_id, '_meta_slider_jma_field', true));
 
     $caption = $slide->post_excerpt;
@@ -103,7 +111,7 @@ function jma_int_meta_image_slide_tabs($tabs, $slide, $slider, $settings)
     if (!$jma_button_class) {
         $jma_button_class = 'btn btn-default';
     }
-    $url = esc_attr(get_post_meta($slide_id, 'ml-slider_url', true));
+    //$url = esc_attr(get_post_meta($slide_id, 'ml-slider_url', true));
     $target = get_post_meta($slide_id, 'ml-slider_new_window', true) ? 'checked=checked' : '';
 
     /* general tab */
