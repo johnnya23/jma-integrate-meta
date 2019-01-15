@@ -1,4 +1,7 @@
 <?php
+if (!defined('ABSPATH')) {
+    die('No direct access.');
+}
 /*
 Plugin Name: JMA Integrate Meta Slider into Header for 7.2
 Description: This plugin integrates the meta slider plugin with jma child theme header for 7.2
@@ -70,7 +73,6 @@ add_action('after_setup_theme', 'jma_integrate_meta');
 function jma_int_meta_nivo_slider_image_attributes($x, $slide)
 {
     $slide_id = $slide['id'];
-    $jma_url = $slide['jma_url'];
     $jma_url = $current = $jma_title_class = $jma_caption_class = $button = $jma_caption_position = $jma_class_final = '';
 
     extract(get_post_meta($slide_id, '_meta_slider_jma_field', true));
@@ -111,7 +113,7 @@ function jma_int_meta_image_slide_tabs($tabs, $slide, $slider, $settings)
     if (!$jma_button_class) {
         $jma_button_class = 'btn btn-default';
     }
-    //$url = esc_attr(get_post_meta($slide_id, 'ml-slider_url', true));
+    $url = '';
     $target = get_post_meta($slide_id, 'ml-slider_new_window', true) ? 'checked=checked' : '';
 
     /* general tab */
@@ -148,6 +150,7 @@ add_filter('metaslider_image_slide_tabs', 'jma_int_meta_image_slide_tabs', 5, 5)
 
 function jma_int_meta_save_settings($slide_id, $slider_id, $fields)
 {
+    $fields['url'] = '';
     update_post_meta($slide_id, '_meta_slider_jma_field', $fields);
 }
 add_action('metaslider_save_image_slide', 'jma_int_meta_save_settings', 20, 3);
