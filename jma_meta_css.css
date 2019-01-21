@@ -84,52 +84,58 @@ body .theme-default .nivo-directionNav a.nivo-nextNav {
     opacity: 1;
 }
 
-.metaslider .nivo-caption .jma-wrapper {
-    position: absolute;
-    width: 800px;
-    max-width: 100%;
+@media(max-width:767px) {
+    .metaslider .nivo-caption {
+        position: relative;
+    }
+    .metaslider .nivo-caption .jma-wrapper {
+        text-align: center;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
-.metaslider .nivo-caption .jma-wrapper .ml-caption-content, .metaslider .nivo-caption .jma-wrapper>h2 {
-    margin-bottom: 20px;
+@media(min-width:768px) {
+    .metaslider .nivo-caption .jma-wrapper {
+        position: absolute;
+        width: 800px;
+        max-width: 100%;
+    }
+    .metaslider .nivo-caption .top {
+        top: 20px;
+    }
+    .metaslider .nivo-caption .right {
+        right: 20px;
+        text-align: right;
+    }
+    .metaslider .nivo-caption .left {
+        left: 20px;
+    }
+    .metaslider .nivo-caption .bottom {
+        bottom: 20px;
+    }
+    .metaslider .nivo-caption .middle {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .metaslider .nivo-caption .center {
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+    .metaslider .nivo-caption .center.middle {
+        transform: translate(-50%, -50%);
+    }
+    .metaslider .nivo-caption .jma-wrapper .ml-caption-content, .metaslider .nivo-caption .jma-wrapper>h2 {
+        margin-bottom: 20px;
+    }
 }
 
 .metaslider .nivo-caption .jma-wrapper .ml-caption-content {
     background: rgba(255, 255, 255, 0.8);
     padding: 15px;
     color: #666666;
-}
-
-.metaslider .nivo-caption .top {
-    top: 20px;
-}
-
-.metaslider .nivo-caption .right {
-    right: 20px;
-    text-align: right;
-}
-
-.metaslider .nivo-caption .left {
-    left: 20px;
-}
-
-.metaslider .nivo-caption .bottom {
-    bottom: 20px;
-}
-
-.metaslider .nivo-caption .middle {
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.metaslider .nivo-caption .center {
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-}
-
-.metaslider .nivo-caption .center.middle {
-    transform: translate(-50%, -50%);
 }
 
 .metaslider .nivo-caption h2, .metaslider .nivo-caption h3 {

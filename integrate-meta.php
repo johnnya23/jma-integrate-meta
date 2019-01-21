@@ -13,17 +13,21 @@ License: GPL2
 function jma_meta_files()
 {
     wp_enqueue_style('jma_meta_css', plugins_url('/jma_meta_css.min.css', __FILE__));
+    wp_enqueue_script('jma_meta_js', plugins_url('/jma_meta_js.min.js', __FILE__), array('jquery'));
 }
-add_action('wp_enqueue_scripts', 'jma_meta_files');
+    add_action('wp_enqueue_scripts', 'jma_meta_files');
 
 function jma_admin_meta_files()
 {
     $data = 'body .metaslider-ui .metaslider-slides-container .slide {
         max-height: none;
-    }
-    .metaslider .tabs-content .tab-0 .row {
-        width:40%;
-        clear: none;
+        }
+        .metaslider .tabs-content .tab-0 .row {
+            width:40%;
+            clear: none;
+        }
+        .metaslider-ui .nav-tab input {
+        height: inherit;
     }';
     wp_add_inline_style('metaslider-global', $data);
 }
