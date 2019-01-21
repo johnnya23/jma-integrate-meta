@@ -13,10 +13,10 @@ License: GPL2
 function jma_meta_files()
 {
     wp_enqueue_style('jma_meta_css', plugins_url('/jma_meta_css.min.css', __FILE__));
-    wp_enqueue_script('jma_meta_js', plugins_url('/jma_meta_js.min.js', __FILE__), array('jquery'));
 }
     add_action('wp_enqueue_scripts', 'jma_meta_files');
 
+//admin css
 function jma_admin_meta_files()
 {
     $data = 'body .metaslider-ui .metaslider-slides-container .slide {
@@ -77,13 +77,22 @@ add_action('after_setup_theme', 'jma_integrate_meta');
 function jma_int_meta_nivo_slider_image_attributes($x, $slide)
 {
     $slide_id = $slide['id'];
-    $jma_url = $current = $jma_title_class = $jma_caption_class = $button = $jma_caption_position = $jma_class_final = '';
+    $jma_url = $current = $jma_title_class = $jma_caption_class = $jma_button = $jma_caption_position = $jma_class_final = '';
 
     extract(get_post_meta($slide_id, '_meta_slider_jma_field', true));
 
     if ($x['data-caption'] || $jma_button || $jma_title) {
         if ($jma_caption_position) {
             $jma_class_final .= str_replace('-', ' ', $jma_caption_position);
+        }
+        if ($jma_button) {
+            $jma_class_final .= ' has-button';
+        }
+        if ($jma_title) {
+            $jma_class_final .= ' has-title';
+        }
+        if ($x['data-caption']) {
+            $jma_class_final .= ' has-caption';
         }
         if ($jma_class) {
             $jma_class_final .= ' ' . $jma_class;

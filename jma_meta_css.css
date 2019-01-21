@@ -85,14 +85,15 @@ body .theme-default .nivo-directionNav a.nivo-nextNav {
 }
 
 @media(max-width:767px) {
-    .metaslider .nivo-caption {
-        position: relative;
-    }
     .metaslider .nivo-caption .jma-wrapper {
+        position: absolute;
         text-align: center;
-        position: relative;
         top: 50%;
-        transform: translateY(-50%);
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .jma-wrapper.has-button.has-title.has-caption .ml-caption-content {
+        display: none;
     }
 }
 
@@ -139,12 +140,19 @@ body .theme-default .nivo-directionNav a.nivo-nextNav {
 }
 
 .metaslider .nivo-caption h2, .metaslider .nivo-caption h3 {
-    margin: 0;
+    margin: 0 0 5px 0;
 }
 
 @media (max-width: 992px) {
     .metaslider .nivo-caption {
         width: 50%;
+    }
+    .metaslider .nivo-caption .jma-wrapper .ml-caption-content {
+        margin-bottom: 5px;
+    }
+    .metaslider .nivo-caption .jma-wrapper a {
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 }
 
