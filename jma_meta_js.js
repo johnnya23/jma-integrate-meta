@@ -19,13 +19,13 @@ jQuery(document).ready(function($) {
     }
 
     // set up the mutation metaObserver
-    var metaObserver = new MutationObserver(function(mutations, me) {
+    var metaObserver = new MutationObserver(function(mutations, metame) {
         // `mutations` is an array of mutations that occurred
         // `me` is the MutationObserver instance
         var canvas = $('.nivo-caption').length;
         if (canvas) {
             handleCanvas(canvas);
-            me.disconnect(); // stop observing
+            metame.disconnect(); // stop observing
             return;
         }
     });
