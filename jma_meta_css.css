@@ -91,6 +91,7 @@ body .theme-default .nivo-directionNav a.nivo-nextNav {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        width: 100%
     }
     .jma-wrapper.has-button.has-title.has-caption .ml-caption-content {
         display: none;
@@ -149,6 +150,9 @@ body .theme-default .nivo-directionNav a.nivo-nextNav {
     }
     .metaslider .nivo-caption .jma-wrapper .ml-caption-content {
         margin-bottom: 5px;
+    }
+    .metaslider .nivo-caption .jma-wrapper .ml-caption-content {
+        padding: 5px;
     }
     .metaslider .nivo-caption .jma-wrapper a {
         padding-top: 5px;
