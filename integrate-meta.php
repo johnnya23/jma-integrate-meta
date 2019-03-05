@@ -35,7 +35,7 @@ add_action('admin_enqueue_scripts', 'jma_admin_meta_files', 15);
 
 function meta_slider_array_filter($slider_selections)
 {
-    $sliders = '';
+    $sliders = array();
     $posts = get_posts(array(
         'post_type' => 'ml-slider',
         'post_status' => 'publish',
@@ -49,7 +49,7 @@ function meta_slider_array_filter($slider_selections)
         }
     }
 
-    if (is_array($sliders)) {
+    if (count($sliders)) {
         $slider_selections['meta-slider'] = $sliders;
     }
 
